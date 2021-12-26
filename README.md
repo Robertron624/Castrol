@@ -8,9 +8,9 @@ Para ejecutar el cliente ejecutar el siguiente comando desde la terminal:
 Para ejecutar el servidor:
   npm start:dev
  Agregar la url de base de datos, el puerto y la sal para el hash de contraseñas en un archivo .env dentro la carpeta del servidor de la siguiente forma:
-   MONGO_DB_SRV= "Aqui la url de tu BD, sin comillas"
-   BCRYPT_ROUNDS= "número entero de tu elección"
-   PORT = "número del puerto" 
+   - MONGO_DB_SRV= "Aqui la url de tu BD, sin comillas"
+   - BCRYPT_ROUNDS= "número entero de tu elección"
+   - PORT = "número del puerto" 
       
  
 ##EN
@@ -21,9 +21,9 @@ To run the client execute the next command in the terminal:
 And to execute the server:
   npm start:dev
 Add the DB url, the port and the salt for password hashing in this form:
-   MONGO_DB_SRV= "Here the mongoDB DB url"
-   BCRYPT_ROUNDS= "integer of your choice"
-   PORT = "port number" 
+   - MONGO_DB_SRV= "Here the mongoDB DB url"
+   - BCRYPT_ROUNDS= "integer of your choice"
+   - PORT = "port number" 
       
   
 ##FR
@@ -34,6 +34,6 @@ Pour exécuter le client, exécutez la commande suivante dans le terminal:
 Et pour exécuter le serveur:
   npm start:dev
 Ajouter la url de la base de donnés, le port et le sel pour le cryptage du mot de passe dans un fichier .env comme suit:
-  MONGO_DB_SRV= "Voici l'url de votre BD, sans les guillemets"
-  BCRYPT_ROUNDS= "nombre entier de votre choix"
-  PORT = "numéro du port" 
+  - MONGO_DB_SRV= "Voici l'url de votre BD, sans les guillemets"
+  - BCRYPT_ROUNDS= "nombre entier de votre choix"
+  - PORT = "numéro du port" 
