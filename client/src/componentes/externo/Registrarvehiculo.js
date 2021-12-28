@@ -5,25 +5,29 @@ import { useState } from "react";
 function Registrarvehiculo() {
 	const { state } = useLocation();
 
-	const [usuario, setUsuario] = useState({});
+	const user = state.userData.usuario;
 
-	Axios.get(`http://localhost:8080/user/${state}/detail`).then((res) => {
-		setUsuario(res.data);
-	});
+	const token = state.token;
 
 	const [placaUser, setplacaUser] = useState("");
 	const [placa2User, setplaca2User] = useState("");
 	let placa;
 
-	const registrarse = () => {
-		Axios.post(
-			"http://localhost:8080/user/61c0828396f8336263420af4/cars/newCar",
-			{
-				placa: placaUser,
-			}
-		)
-			.then((res) => console.log(res))
-			.catch((error) => console.log(error));
+	const registrar = async () => {
+		try {
+			const res = Axios.post(
+				`http://localhost:8080/user/${user.id}/cars/newCar`,
+				{
+					placa: placa,
+				},
+				{
+					Authorization: token,
+				}
+			);
+			return await res;
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -228,17 +232,30 @@ function Registrarvehiculo() {
 															className="form-control form-control-user"
 															id="exampleFirstName"
 															placeholder="Confirme placa"
+															onChange={(e) => {
+																setplaca2User(e.target.value);
+															}}
 														/>
 													</div>
 												</div>
 												<div className="form-group row">
 													<div className="col-sm-6 mb-3 mb-sm-0">
-														<Link
-															to="/App"
+														<button
+															onClick={() => {
+																if (placaUser === placa2User) {
+																	placa = placaUser;
+																	const res = registrar();
+																	console.log(res);
+																} else {
+																	console.log(
+																		"Las placas no coinciden, por favor revise"
+																	);
+																}
+															}}
 															className="btn btn-primary btn-user btn-block"
 														>
 															Registrar
-														</Link>
+														</button>
 													</div>
 												</div>
 											</form>

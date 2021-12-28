@@ -5,6 +5,7 @@ import { useState } from "react";
 function App() {
 	const { state } = useLocation();
 	const user = state.userData.usuario;
+	const accessToken = state.userData.accessToken;
 	const navigate = useNavigate();
 
 	return (
@@ -25,7 +26,15 @@ function App() {
 					<li className="nav-item">
 						<p className="nav-link">
 							<span>Registra tu vehículo</span>
-							<button className="carousel-control-next2" data-slide="next">
+							<button
+								onClick={() => {
+									navigate("/Registrarvehiculo", {
+										state: { userData: user, token: accessToken },
+									});
+								}}
+								className="carousel-control-next2"
+								data-slide="next"
+							>
 								<span className="carousel-control-next-icon"></span>
 							</button>
 						</p>
@@ -64,14 +73,13 @@ function App() {
 					<li className="nav-item">
 						<p className="nav-link">
 							<span>Recarga tu cuenta</span>
-							<Link
+							<button
 								className="carousel-control-next2"
 								to="/Recargar"
-								role="button"
 								data-slide="next"
 							>
 								<span className="carousel-control-next-icon"></span>
-							</Link>
+							</button>
 						</p>
 					</li>
 
