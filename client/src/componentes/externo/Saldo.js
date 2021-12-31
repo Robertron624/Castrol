@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 
 function Saldo() {
 	const { state } = useLocation();
-	console.log(state);
 	const user = state.userData;
 
 	return (

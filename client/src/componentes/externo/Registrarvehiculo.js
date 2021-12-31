@@ -1,13 +1,15 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { useState } from "react";
 
 function Registrarvehiculo() {
 	const { state } = useLocation();
 
-	const user = state.userData.usuario;
-
+	const navigate = useNavigate();
+	const user = state.userData;
 	const token = state.token;
+
+	console.log("ESTE ES EL USER:: ", user, "ESTE ES EL TOKEN::  ", token);
 
 	const [placaUser, setplacaUser] = useState("");
 	const [placa2User, setplaca2User] = useState("");
@@ -16,12 +18,14 @@ function Registrarvehiculo() {
 	const registrar = async () => {
 		try {
 			const res = Axios.post(
-				`http://localhost:8080/user/${user.id}/cars/newCar`,
+				`http://localhost:8080/user/${user._id}/cars/newCar`,
 				{
-					placa: placa,
+					plate: placa,
 				},
 				{
-					Authorization: token,
+					headers: {
+						Authorization: token,
+					},
 				}
 			);
 			return await res;
@@ -61,14 +65,17 @@ function Registrarvehiculo() {
 					<li className="nav-item">
 						<p className="nav-link">
 							<span>Vehículos a tu nombre</span>
-							<Link
+							<button
 								className="carousel-control-next2"
-								to="/Vehiculosregistrados"
-								role="button"
+								onClick={() => {
+									navigate("/Vehiculosregistrados", {
+										state: { userData: user, token: token },
+									});
+								}}
 								data-slide="next"
 							>
 								<span className="carousel-control-next-icon"></span>
-							</Link>
+							</button>
 						</p>
 					</li>
 
@@ -175,7 +182,7 @@ function Registrarvehiculo() {
 										aria-expanded="false"
 									>
 										<span className="mr-2 d-none d-lg-inline text-gray-600 small">
-											jenifer marin
+											{user.name} {user.lastname}
 										</span>
 										<img
 											className="img-profile rounded-circle"
@@ -211,7 +218,12 @@ function Registrarvehiculo() {
 											</h6>
 										</div>
 										<div className="card-body">
-											<form className="user">
+											<form
+												className="user"
+												onSubmit={(e) => {
+													e.preventDefault();
+												}}
+											>
 												<div className="form-group row">
 													<div className="col-sm-6 mb-3 mb-sm-0">
 														<input
@@ -245,7 +257,7 @@ function Registrarvehiculo() {
 																if (placaUser === placa2User) {
 																	placa = placaUser;
 																	const res = registrar();
-																	console.log(res);
+																	console.log(res.status);
 																} else {
 																	console.log(
 																		"Las placas no coinciden, por favor revise"

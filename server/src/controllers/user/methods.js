@@ -36,6 +36,11 @@ export const addCar = async (userId, newCar) => {
 	return user;
 };
 
+export const getCars = async (userId) => {
+	const user = await externalUser.findById(userId);
+	return user.cars;
+};
+
 export const addGas = async (userId, carId, gas) => {
 	const user = await externalUser.findById(userId);
 	const newGas = parseInt(gas);
