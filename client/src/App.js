@@ -1,11 +1,30 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import Axios from "axios";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
 	const { state } = useLocation();
-	const user = state.userData.usuario;
-	const accessToken = state.userData.accessToken;
+	const userId = state.userData;
+	const accessToken = state.token;
+
+	const [user, setUser] = useState({});
+
+	useEffect(() => {
+		async function getData() {
+			const response = await Axios.get(
+				`http://localhost:8080/user/${userId}/detail`,
+				{
+					headers: {
+						Authorization: accessToken,
+					},
+				}
+			);
+			setUser(response.data);
+		}
+		getData();
+	}, [accessToken, userId]);
+
 	const navigate = useNavigate();
 
 	return (
@@ -29,7 +48,12 @@ function App() {
 							<button
 								onClick={() => {
 									navigate("/Registrarvehiculo", {
-										state: { userData: user, token: accessToken },
+										state: {
+											userData: userId,
+											token: accessToken,
+											name: user.name,
+											lastname: user.lastname,
+										},
 									});
 								}}
 								className="carousel-control-next2"
@@ -46,7 +70,12 @@ function App() {
 								className="carousel-control-next2"
 								onClick={() => {
 									navigate("/Vehiculosregistrados", {
-										state: { userData: user, token: accessToken },
+										state: {
+											userData: userId,
+											token: accessToken,
+											name: user.name,
+											lastname: user.lastname,
+										},
 									});
 								}}
 								data-slide="next"
@@ -62,7 +91,12 @@ function App() {
 							<button
 								onClick={() =>
 									navigate("/Saldo", {
-										state: { userData: user },
+										state: {
+											userData: userId,
+											token: accessToken,
+											name: user.name,
+											lastname: user.lastname,
+										},
 									})
 								}
 								className="carousel-control-next2"
@@ -80,7 +114,12 @@ function App() {
 								className="carousel-control-next2"
 								onClick={() => {
 									navigate("/Recargar", {
-										state: { userData: user, token: accessToken },
+										state: {
+											userData: userId,
+											token: accessToken,
+											name: user.name,
+											lastname: user.lastname,
+										},
 									});
 								}}
 								data-slide="next"
@@ -97,7 +136,12 @@ function App() {
 								className="carousel-control-next2"
 								onClick={() => {
 									navigate("/Historial", {
-										state: { userData: user, token: accessToken },
+										state: {
+											userData: userId,
+											token: accessToken,
+											name: user.name,
+											lastname: user.lastname,
+										},
 									});
 								}}
 								data-slide="next"
@@ -114,7 +158,12 @@ function App() {
 								className="carousel-control-next2"
 								onClick={() => {
 									navigate("/Estadogasolina", {
-										state: { userData: user, token: accessToken },
+										state: {
+											userData: userId,
+											token: accessToken,
+											name: user.name,
+											lastname: user.lastname,
+										},
 									});
 								}}
 								data-slide="next"
@@ -131,7 +180,12 @@ function App() {
 								className="carousel-control-next2"
 								onClick={() => {
 									navigate("/Tanquea", {
-										state: { userData: user, token: accessToken },
+										state: {
+											userData: userId,
+											token: accessToken,
+											name: user.name,
+											lastname: user.lastname,
+										},
 									});
 								}}
 								data-slide="next"
@@ -148,7 +202,12 @@ function App() {
 								className="carousel-control-next2"
 								onClick={() => {
 									navigate("/Redimir", {
-										state: { userData: user, token: accessToken },
+										state: {
+											userData: userId,
+											token: accessToken,
+											name: user.name,
+											lastname: user.lastname,
+										},
 									});
 								}}
 								data-slide="next"

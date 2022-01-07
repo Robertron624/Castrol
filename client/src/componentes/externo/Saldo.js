@@ -1,8 +1,32 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Axios from "axios";
 
 function Saldo() {
 	const { state } = useLocation();
-	const user = state.userData;
+	const navigate = useNavigate();
+
+	const userId = state.userData;
+	const accessToken = state.token;
+	const nombre = state.name;
+	const apellido = state.lastname;
+
+	const [saldo, setSaldo] = useState();
+
+	useEffect(() => {
+		async function getData() {
+			const response = await Axios.get(
+				`http://localhost:8080/user/${userId}/balance`,
+				{
+					headers: {
+						Authorization: accessToken,
+					},
+				}
+			);
+			setSaldo(response.data.balance);
+		}
+		getData();
+	}, [accessToken, userId]);
 
 	return (
 		<>
@@ -147,7 +171,7 @@ function Saldo() {
 										aria-expanded="false"
 									>
 										<span className="mr-2 d-none d-lg-inline text-gray-600 small">
-											{user.name} {user.lastname}
+											{nombre} {apellido}
 										</span>
 										<img
 											className="img-profile rounded-circle"
@@ -184,12 +208,10 @@ function Saldo() {
 										</div>
 										<div className="card-body">
 											<p>
-												Estimad@ {user.name} {user.lastname}{" "}
+												Estimad@ {nombre} {apellido}{" "}
 											</p>{" "}
 											<br />
-											<p className="mb-0">
-												Tu saldo a la fecha es: $ {user.balance}.
-											</p>
+											<p className="mb-0">Tu saldo a la fecha es: $ {saldo}.</p>
 										</div>
 									</div>
 								</div>

@@ -85,7 +85,10 @@ function Login() {
 														let codigo = res.statusText;
 														if (codigo === "OK") {
 															navigate("/App", {
-																state: { userData: res.data },
+																state: {
+																	userData: res.data.usuario._id,
+																	token: res.data.accessToken,
+																},
 															});
 														} else {
 															console.log("NO SE PUDO INCIAR SESION");

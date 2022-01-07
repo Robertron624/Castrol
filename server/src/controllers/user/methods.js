@@ -57,3 +57,8 @@ export const addMoney = async (userId, money) => {
 	user.save();
 	return user;
 };
+
+export const getBalance = async (userId) => {
+	const user = await externalUser.findById(userId);
+	return user.balance;
+};

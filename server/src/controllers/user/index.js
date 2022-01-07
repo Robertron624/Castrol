@@ -12,6 +12,7 @@ import {
 	addMoney,
 	getCarById,
 	getCars,
+	getBalance,
 } from "./methods";
 const router = Router();
 
@@ -120,6 +121,14 @@ router.put("/:userId/balance", authGuard, async (req, res, next) => {
 	try {
 		addMoney(req.params.userId, req.body.balance);
 		res.json({ message: "Dinero correctamente agregado" });
+	} catch (error) {
+		next(error);
+	}
+});
+router.get("/:userId/balance", authGuard, async (req, res, next) => {
+	try {
+		const balance = await getBalance(req.params.userId);
+		res.json({ balance: balance });
 	} catch (error) {
 		next(error);
 	}

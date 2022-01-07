@@ -6,10 +6,10 @@ function Registrarvehiculo() {
 	const { state } = useLocation();
 
 	const navigate = useNavigate();
-	const user = state.userData;
+	const userId = state.userData;
 	const token = state.token;
-
-	console.log("ESTE ES EL USER:: ", user, "ESTE ES EL TOKEN::  ", token);
+	const nombre = state.name;
+	const apellido = state.lastname;
 
 	const [placaUser, setplacaUser] = useState("");
 	const [placa2User, setplaca2User] = useState("");
@@ -18,7 +18,7 @@ function Registrarvehiculo() {
 	const registrar = async () => {
 		try {
 			const res = Axios.post(
-				`http://localhost:8080/user/${user._id}/cars/newCar`,
+				`http://localhost:8080/user/${userId}/cars/newCar`,
 				{
 					plate: placa,
 				},
@@ -69,7 +69,7 @@ function Registrarvehiculo() {
 								className="carousel-control-next2"
 								onClick={() => {
 									navigate("/Vehiculosregistrados", {
-										state: { userData: user, token: token },
+										state: { userData: userId, token: token },
 									});
 								}}
 								data-slide="next"
@@ -182,7 +182,7 @@ function Registrarvehiculo() {
 										aria-expanded="false"
 									>
 										<span className="mr-2 d-none d-lg-inline text-gray-600 small">
-											{user.name} {user.lastname}
+											{nombre} {apellido}
 										</span>
 										<img
 											className="img-profile rounded-circle"
