@@ -1,6 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import Axios from "axios";
 
 function Recargar() {
+	const { state } = useLocation();
+
+	const userId = state.userData;
+	const accessToken = state.token;
+	const nombre = state.name;
+	const apellido = state.lastname;
+
 	return (
 		<>
 			<div id="wrapper">
@@ -20,6 +29,12 @@ function Recargar() {
 							<Link
 								className="carousel-control-next2"
 								to="/Registrarvehiculo"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -33,6 +48,12 @@ function Recargar() {
 							<Link
 								className="carousel-control-next2"
 								to="/Vehiculosregistrados"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -47,6 +68,12 @@ function Recargar() {
 							<Link
 								className="carousel-control-next2"
 								to="/Saldo"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -61,6 +88,12 @@ function Recargar() {
 							<Link
 								className="carousel-control-next2"
 								to="/Recargar"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -89,6 +122,12 @@ function Recargar() {
 							<Link
 								className="carousel-control-next2"
 								to="/Estadogasolina"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -103,6 +142,12 @@ function Recargar() {
 							<Link
 								className="carousel-control-next2"
 								to="/Tanquea"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -144,7 +189,7 @@ function Recargar() {
 										aria-expanded="false"
 									>
 										<span className="mr-2 d-none d-lg-inline text-gray-600 small">
-											Usuario Externo
+											{nombre} {apellido}
 										</span>
 										<img
 											className="img-profile rounded-circle"

@@ -1,10 +1,9 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 
 function Saldo() {
 	const { state } = useLocation();
-	const navigate = useNavigate();
 
 	const userId = state.userData;
 	const accessToken = state.token;
@@ -47,6 +46,12 @@ function Saldo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Registrarvehiculo"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -60,6 +65,12 @@ function Saldo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Vehiculosregistrados"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -74,6 +85,12 @@ function Saldo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Saldo"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -88,6 +105,12 @@ function Saldo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Recargar"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -102,6 +125,12 @@ function Saldo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Historial"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -116,6 +145,12 @@ function Saldo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Estadogasolina"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -130,6 +165,12 @@ function Saldo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Tanquea"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -144,6 +185,12 @@ function Saldo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Redimir"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -176,6 +223,7 @@ function Saldo() {
 										<img
 											className="img-profile rounded-circle"
 											src="img/undraw_profile.svg"
+											alt="profile-user"
 										/>
 									</a>
 									<div

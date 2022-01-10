@@ -1,13 +1,12 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import Axios from "axios";
 import { useState } from "react";
 
 function Registrarvehiculo() {
 	const { state } = useLocation();
 
-	const navigate = useNavigate();
 	const userId = state.userData;
-	const token = state.token;
+	const accessToken = state.token;
 	const nombre = state.name;
 	const apellido = state.lastname;
 
@@ -24,7 +23,7 @@ function Registrarvehiculo() {
 				},
 				{
 					headers: {
-						Authorization: token,
+						Authorization: accessToken,
 					},
 				}
 			);
@@ -55,6 +54,12 @@ function Registrarvehiculo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Registrarvehiculo"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -65,17 +70,20 @@ function Registrarvehiculo() {
 					<li className="nav-item">
 						<p className="nav-link">
 							<span>Vehículos a tu nombre</span>
-							<button
+							<Link
 								className="carousel-control-next2"
-								onClick={() => {
-									navigate("/Vehiculosregistrados", {
-										state: { userData: userId, token: token },
-									});
+								to="/Vehiculosregistrados"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
 								}}
+								role="button"
 								data-slide="next"
 							>
 								<span className="carousel-control-next-icon"></span>
-							</button>
+							</Link>
 						</p>
 					</li>
 
@@ -85,6 +93,12 @@ function Registrarvehiculo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Saldo"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -99,6 +113,12 @@ function Registrarvehiculo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Recargar"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -113,6 +133,12 @@ function Registrarvehiculo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Historial"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -127,6 +153,12 @@ function Registrarvehiculo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Estadogasolina"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -141,6 +173,12 @@ function Registrarvehiculo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Tanquea"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -155,6 +193,12 @@ function Registrarvehiculo() {
 							<Link
 								className="carousel-control-next2"
 								to="/Redimir"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>

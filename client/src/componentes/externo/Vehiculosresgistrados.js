@@ -1,27 +1,30 @@
-import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import Axios from "axios";
+import { useLocation, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function Vehiculosregistrados() {
 	const { state } = useLocation();
-	const navigate = useNavigate();
-	const user = state.userData;
-	const accessToken = state.token;
-	console.log("ESTE ES EL ID DEL USUARIO:: ", user._id);
 
-	const listarCarros = async (userId) => {
-		const response = axios.get(`https://localhost:8080/user/${userId}/cars`, {
-			headers: {
-				Authorization: accessToken,
-			},
-		});
-		return await response;
-	};
-	const stringCars = async () => {
-		const cars = await listarCarros(user._id);
-		return cars;
-	};
-	let res = stringCars();
-	console.log("ESTO ES LA RESPUESTA:: ", res);
+	const userId = state.userData;
+	const accessToken = state.token;
+	const nombre = state.name;
+	const apellido = state.lastname;
+	const [cars, setCars] = useState([]);
+
+	useEffect(() => {
+		async function getData() {
+			const response = await Axios.get(
+				`http://localhost:8080/user/${userId}/cars`,
+				{
+					headers: {
+						Authorization: accessToken,
+					},
+				}
+			);
+			setCars(response.data);
+		}
+		getData();
+	}, [accessToken, userId]);
 
 	return (
 		<>
@@ -39,135 +42,159 @@ function Vehiculosregistrados() {
 					<li className="nav-item">
 						<p className="nav-link">
 							<span>Registra tu vehículo</span>
-							<button
+							<Link
 								className="carousel-control-next2"
-								onClick={() => {
-									navigate("/Registrarvehiculo", {
-										state: { userData: user, token: accessToken },
-									});
+								to="/Registrarvehiculo"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
 								}}
+								role="button"
 								data-slide="next"
 							>
 								<span className="carousel-control-next-icon"></span>
-							</button>
+							</Link>
 						</p>
 					</li>
 					<li className="nav-item">
 						<p className="nav-link">
 							<span>Vehículos a tu nombre</span>
-							<button
+							<Link
 								className="carousel-control-next2"
-								onClick={() => {
-									navigate("/Vehiculosregistrados", {
-										state: { userData: user, token: accessToken },
-									});
+								to="/Vehiculosregistrados"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
 								}}
+								role="button"
 								data-slide="next"
 							>
 								<span className="carousel-control-next-icon"></span>
-							</button>
+							</Link>
 						</p>
 					</li>
 
 					<li className="nav-item">
 						<p className="nav-link">
 							<span>Conoce tu saldo</span>
-							<button
+							<Link
 								className="carousel-control-next2"
-								onClick={() => {
-									navigate("/Saldo", {
-										state: { userData: user, token: accessToken },
-									});
+								to="/Saldo"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
 								}}
+								role="button"
 								data-slide="next"
 							>
 								<span className="carousel-control-next-icon"></span>
-							</button>
+							</Link>
 						</p>
 					</li>
 
 					<li className="nav-item">
 						<p className="nav-link">
 							<span>Recarga tu cuenta</span>
-							<button
+							<Link
 								className="carousel-control-next2"
-								onClick={() => {
-									navigate("/Recargar", {
-										state: { userData: user, token: accessToken },
-									});
+								to="/Recargar"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
 								}}
+								role="button"
 								data-slide="next"
 							>
 								<span className="carousel-control-next-icon"></span>
-							</button>
+							</Link>
 						</p>
 					</li>
 
 					<li className="nav-item">
 						<p className="nav-link">
 							<span>Ver historial de movimientos</span>
-							<button
+							<Link
 								className="carousel-control-next2"
-								onClick={() => {
-									navigate("/Historial", {
-										state: { userData: user, token: accessToken },
-									});
+								to="/Historial"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
 								}}
+								role="button"
 								data-slide="next"
 							>
 								<span className="carousel-control-next-icon"></span>
-							</button>
+							</Link>
 						</p>
 					</li>
 
 					<li className="nav-item">
 						<p className="nav-link">
 							<span>Estado de la gasolina</span>
-							<button
+							<Link
 								className="carousel-control-next2"
-								onClick={() => {
-									navigate("/Estadogasolina", {
-										state: { userData: user, token: accessToken },
-									});
+								to="/Estadogasolina"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
 								}}
+								role="button"
 								data-slide="next"
 							>
 								<span className="carousel-control-next-icon"></span>
-							</button>
+							</Link>
 						</p>
 					</li>
 
 					<li className="nav-item">
 						<p className="nav-link">
 							<span>Tanquea tu vehículo</span>
-							<button
+							<Link
 								className="carousel-control-next2"
-								onClick={() => {
-									navigate("/Tanquea", {
-										state: { userData: user, token: accessToken },
-									});
+								to="/Tanquea"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
 								}}
+								role="button"
 								data-slide="next"
 							>
 								<span className="carousel-control-next-icon"></span>
-							</button>
+							</Link>
 						</p>
 					</li>
 
 					<li className="nav-item">
 						<p className="nav-link">
 							<span>Redimir puntos</span>
-							<button
+							<Link
 								className="carousel-control-next2"
-								onClick={() => {
-									navigate("/Redimir", {
-										state: { userData: user, token: accessToken },
-									});
+								to="/Redimir"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
 								}}
+								role="button"
 								data-slide="next"
 							>
 								<span className="carousel-control-next-icon"></span>
-							</button>
+							</Link>
 						</p>
 					</li>
 				</ul>
@@ -190,7 +217,7 @@ function Vehiculosregistrados() {
 										aria-expanded="false"
 									>
 										<span className="mr-2 d-none d-lg-inline text-gray-600 small">
-											Usuario Externo
+											{nombre} {apellido}
 										</span>
 										<img
 											className="img-profile rounded-circle"
