@@ -13,6 +13,7 @@ function Registrar() {
 	let passcomprobar;
 	const [passwordUser, setpasswordUser] = useState("");
 	const [password2User, setpassword2User] = useState("");
+	const [mensaje, setMensaje] = useState("");
 
 	const comprobar = (a, b) => {
 		return a === b;
@@ -24,7 +25,7 @@ function Registrar() {
 			email: emailcomprobar,
 			password: passcomprobar,
 		})
-			.then((res) => console.log(res))
+			.then((res) => setMensaje(res.data))
 			.catch((error) => console.log(error));
 	};
 	return (
@@ -45,7 +46,10 @@ function Registrar() {
 													¡Crea tu cuenta!
 												</h1>
 											</div>
-											<form className="user">
+											<form
+												className="user"
+												onSubmit={(e) => e.preventDefault()}
+											>
 												<div className="form-group row">
 													<div className="col-sm-6 mb-3 mb-sm-0">
 														<input
@@ -127,7 +131,9 @@ function Registrar() {
 															registrarse();
 															<Link className="small" to="/Login"></Link>;
 														} else {
-															alert("LOS EMAIL NO SON IGUALES");
+															setMensaje(
+																"Los e-mails o las contraseñas no coinciden"
+															);
 														}
 													}}
 													className="btn btn-primary btn-user btn-block"
@@ -145,6 +151,9 @@ function Registrar() {
 												<Link className="small" to="/Login">
 													¿Ya tienes una cuenta? ¡Ingresa!
 												</Link>
+											</div>
+											<div className="text-center">
+												<span>{mensaje}</span>
 											</div>
 										</div>
 									</div>

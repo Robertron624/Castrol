@@ -98,7 +98,7 @@ router.post("/:userId/cars/newCar", authGuard, async (req, res, next) => {
 router.get("/:userId/cars", authGuard, async (req, res, next) => {
 	try {
 		const cars = await getCars(req.params.userId);
-		console.log("ESTO ES LO QUE ME DEVUELVE LOS CARROS:: ", cars);
+		// console.log("ESTO ES LO QUE ME DEVUELVE LOS CARROS:: ", cars);
 		res.json({ cars: cars });
 	} catch (e) {
 		console.log(e);

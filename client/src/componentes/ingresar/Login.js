@@ -69,14 +69,8 @@ function Login() {
 														}}
 													/>
 												</div>
-												<div className="form-group">
-													<div className="custom-control custom-checkbox small">
-														<input
-															type="checkbox"
-															className="custom-control-input"
-															id="customCheck"
-														/>
-													</div>
+												<div className="error-box" id="login-error-box">
+													<p>HUBO UN ERROR!!</p>
 												</div>
 
 												<button

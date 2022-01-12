@@ -38,6 +38,8 @@ function Saldo() {
 						<p className="nav-link">
 							<span>MENÚ</span>
 						</p>
+
+						<p className="nav-link">Puntos acumulados 120</p>
 					</li>
 					<hr className="sidebar-divider" />
 					<li className="nav-item">

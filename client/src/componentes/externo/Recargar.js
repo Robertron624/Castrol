@@ -21,6 +21,14 @@ function Recargar() {
 						<p className="nav-link">
 							<span>MENÚ</span>
 						</p>
+
+						<p className="nav-link">Puntos acumulados 120</p>
+					</li>
+					<hr className="sidebar-divider" />
+					<li className="nav-item active">
+						<p className="nav-link">
+							<span>MENÚ</span>
+						</p>
 					</li>
 					<hr className="sidebar-divider" />
 					<li className="nav-item">
@@ -108,6 +116,12 @@ function Recargar() {
 							<Link
 								className="carousel-control-next2"
 								to="/Historial"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
@@ -162,6 +176,12 @@ function Recargar() {
 							<Link
 								className="carousel-control-next2"
 								to="/Redimir"
+								state={{
+									userData: userId,
+									token: accessToken,
+									name: nombre,
+									lastname: apellido,
+								}}
 								role="button"
 								data-slide="next"
 							>
